@@ -18,9 +18,8 @@ class Game
         Game();
         void start();
         Case play(int col, int caseNum);
-        vector<array<Case*, 4>> getCombinaisons(Case square);
-        bool checkWin(vector<array<Case*, 4>> combinaison_list);
-        void drawCombinaison();
+        vector<array<Case*, 3>> getCombinaisons(Case square);
+        bool checkWin(vector<array<Case*, 3>> combinaison_list);
 };
 
 #endif
