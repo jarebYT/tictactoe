@@ -2,7 +2,7 @@
 #define GAME_H
 
 #include "Joueur.h"
-#include "Grid.h"
+#include "Grille.h"
 #include <array>
 #include <vector>
 
@@ -12,14 +12,14 @@ class Game
         Joueur j1;
         Joueur j2;
         Joueur* currentPlayer;
-        Grid grid;
-         
+        Grille grid;
+        
     public:
         Game();
         void start();
-        Square play(int col);
-        vector<array<Square*, 4>> getCombinaisons(Square square);
-        bool checkWin(vector<array<Square*, 4>> combinaison_list);
+        Case play(int col);
+        vector<array<Case*, 4>> getCombinaisons(Case square);
+        bool checkWin(vector<array<Case*, 4>> combinaison_list);
         void drawCombinaison();
 };
 
