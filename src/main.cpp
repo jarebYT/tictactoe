@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/Myclass.h"   // On inclut le .h pour utiliser la classe
+#include "../include/Myclass.h" // On inclut le .h pour utiliser la classe
 
 using namespace std;
 
