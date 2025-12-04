@@ -15,19 +15,31 @@ void Game::start()
     j1.setToken("x");
     j2.setToken("o");
     int selectedCol;
+    int selectedCase;
     while (true)
     {
         grid.display();
         cout << "Joueur : " << currentPlayer->getNom() << endl;
-        cout << "Choisissez une colonne entre 1 et 3" << endl;
+        cout << "Choisissez une ligne entre 1 et 3" << endl;
+      
         while (!(cin >> selectedCol) || selectedCol < 1 || selectedCol > 3)
         {
             cin.clear();
             cin.ignore(10000, '\n');
             cout << "Colonne invalide, choisissez une colonne entre 1 et 3" << endl;
         }
+
+        cout << "Choisissez une case entre 1 et 3" << endl;
+        while (!(cin >> selectedCase) || selectedCase < 1 || selectedCase > 3)
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Case invalide, choisissez une case entre 1 et 3" << endl;
+        }
+      
         selectedCol -= 1;
-        Case square = play(selectedCol);
+        selectedCase -=1;
+        Case square = play(selectedCol, selectedCase);
         vector<array<Case *, 4>> combinaison_list = getCombinaisons(square);
         if (checkWin(combinaison_list))
         {
@@ -48,15 +60,15 @@ void Game::start()
     system("pause");
 }
 
-Case Game::play(int col)
+Case Game::play(int col, int caseNum)
 {
     Colonne &currentCol = grid.getColonne(col);
     for (int i = currentCol.getCaseNumber() - 1; i >= 0; i--)
     {
-        if (!currentCol.getCase(i).hasToken())
+        if (!currentCol.getCase(caseNum).hasToken())
         {
-            currentCol.getCase(i).setToken(currentPlayer->getToken());
-            return currentCol.getCase(i);
+            currentCol.getCase(caseNum).setToken(currentPlayer->getToken());
+            return currentCol.getCase(caseNum);
         }
     }
 }
