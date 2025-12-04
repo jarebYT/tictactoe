@@ -176,10 +176,10 @@ bool Game::checkWin(vector<array<Case *, 4>> combinaison_list)
             combinaison[2]->getToken().has_value() &&
             combinaison[3]->getToken().has_value())
         {
-            string token = combinaison[0]->getToken().value();
-            if (token == combinaison[1]->getToken().value() &&
-                token == combinaison[2]->getToken().value() &&
-                token == combinaison[3]->getToken().value())
+            string token = combinaison[0]->getToken().value_ref();
+            if (token == combinaison[1]->getToken().value_ref() &&
+                token == combinaison[2]->getToken().value_ref() &&
+                token == combinaison[3]->getToken().value_ref())
             {
                 
                 return true;

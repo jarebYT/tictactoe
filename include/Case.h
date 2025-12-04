@@ -2,7 +2,7 @@
 #define CASE_H
 
 #include <string>
-#include <optional>
+#include <Optional.h>
 
 using namespace std;
 
@@ -10,7 +10,7 @@ class Case {
 private:
     int x;
     int y;
-    optional<string> token;
+    Optional<string> token;
 
 public:
     Case();
@@ -18,7 +18,7 @@ public:
     int getX() const;
     int getY() const;
     void setToken(const string& value);
-    optional<string>& getToken();
+    Optional<string>& getToken();
     void clearToken();
 
     void display();
