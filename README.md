@@ -42,14 +42,6 @@ g++ -I include src/*.cpp -o tictactoe
 
 
 
-
-
-## Bonus
-
-- Github Actions pour tester la compil à chaque push sur la main et dev, ainsi que sur les pr.
-- Jouer contre l'IA
-
-
 ## Equipe
 
 - Asly (Alicia1905), Rôle : Affichage du résultat
