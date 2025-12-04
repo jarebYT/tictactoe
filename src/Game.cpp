@@ -8,6 +8,9 @@ Game::Game() : j1(), j2(), grid()
     currentPlayer = &j1;
 }
 
+bool cbon = true;
+int tours = 0;
+
 void Game::start()
 {
     j1.setNom("Joueur 1");
@@ -19,6 +22,11 @@ void Game::start()
     while (true)
     {
         grid.display();
+        if (tours >= 9)
+        {
+            cout << "Match Nul !" << endl;
+            break;
+        }
         cout << "Joueur : " << currentPlayer->getNom() << endl;
         cout << "Choisissez une ligne entre 1 et 3" << endl;
       
@@ -58,11 +66,11 @@ void Game::start()
             grid.display();
             break;
         }
-        if (currentPlayer == &j1)
+        if (currentPlayer == &j1 && cbon == true)
         {
             currentPlayer = &j2;
         }
-        else
+        else if (cbon == true)
         {
             currentPlayer = &j1;
         }
@@ -80,11 +88,15 @@ Case Game::play(int col, int caseNum)
         if (!currentCol.getCase(caseNum).hasToken())
         {
             currentCol.getCase(caseNum).setToken(currentPlayer->getToken());
+            cbon = true;
+            tours++;
             return currentCol.getCase(caseNum);
         }
         else
         {
-            cout << "Cette case est déjà occupée !" << endl;
+            cout << "Cette case est deja occupee !" << endl;
+            system("pause");
+            cbon = false;
             return currentCol.getCase(caseNum);
         }
     }

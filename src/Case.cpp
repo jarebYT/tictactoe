@@ -28,7 +28,7 @@ void Case::clearToken() {
 
 void Case::display() {
     cout << "[";
-    if (!token.has_value()) {
+    if (token.has_value() && token.value_ref() != "") {
         cout << token.value_ref();
     } else {
         cout << " ";
@@ -37,5 +37,5 @@ void Case::display() {
 }
 
 bool Case::hasToken() {
-    return !token.has_value();
+    return token.has_value() && token.value_ref() != "";
 }
