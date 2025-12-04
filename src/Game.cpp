@@ -38,7 +38,19 @@ void Game::start()
         }
       
         selectedCol -= 1;
-        selectedCase -=1;
+
+        switch(selectedCase) {
+            case 1:
+                selectedCase = 2;
+                break;
+            case 3:
+                selectedCase = 0;
+                break;
+            default:
+                selectedCase = 1;
+                break;
+        }
+
         Case square = play(selectedCol, selectedCase);
         vector<array<Case *, 4>> combinaison_list = getCombinaisons(square);
         if (checkWin(combinaison_list))
@@ -70,8 +82,15 @@ Case Game::play(int col, int caseNum)
             currentCol.getCase(caseNum).setToken(currentPlayer->getToken());
             return currentCol.getCase(caseNum);
         }
+        else
+        {
+            cout << "Cette case est déjà occupée !" << endl;
+            return currentCol.getCase(caseNum);
+        }
     }
 }
+
+
 
 vector<array<Case *, 4>> Game::getCombinaisons(Case square)
 {
