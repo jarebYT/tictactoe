@@ -44,7 +44,7 @@ g++ -I include src/*.cpp -o tictactoe
 
 ## Equipe
 
-- Asly (Alicia1905), Rôle : Affichage du résultat
+- Asli (Alicia1905), Rôle : Affichage du résultat
 - Florian (Nerollf), Rôle : Grille 3x3
 - Alexandre (jarebYT), Rôle : Joueur, Validation de la saisie, Git Leader
 - Sonny (NASonny), Rôle : Organisation, Détection de victoire / égalité, Github Actions
