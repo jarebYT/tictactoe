@@ -22,8 +22,8 @@ void Game::start()
         cout << "Choisissez une colonne entre 1 et 3" << endl;
         cin >> selectedCol;
         selectedCol - 1;
-        Square square = play(selectedCol);
-        vector<array<Square *, 4>> combinaison_list = getCombinaisons(square);
+        Case square = play(selectedCol);
+        vector<array<Case *, 4>> combinaison_list = getCombinaisons(square);
         if (checkWin(combinaison_list))
         {
             grid.display();
@@ -43,32 +43,32 @@ void Game::start()
     system("pause");
 }
 
-Square Game::play(int col)
+Case Game::play(int col)
 {
-    Column &currentCol = grid.getColumn(col);
-    for (int i = currentCol.getSquareNumber() - 1; i >= 0; i--)
+    Colonne &currentCol = grid.getColonne(col);
+    for (int i = currentCol.getCaseNumber() - 1; i >= 0; i--)
     {
-        if (!currentCol.getSquare(i).hasToken())
+        if (!currentCol.getCase(i).hasToken())
         {
-            currentCol.getSquare(i).setToken(currentPlayer->getToken());
-            return currentCol.getSquare(i);
+            currentCol.getCase(i).setToken(currentPlayer->getToken());
+            return currentCol.getCase(i);
         }
     }
 }
 
-vector<array<Square *, 4>> Game::getCombinaisons(Square square)
+vector<array<Case *, 4>> Game::getCombinaisons(Case square)
 {
-    vector<array<Square *, 4>> combinaison_list;
+    vector<array<Case *, 4>> combinaison_list;
     for (int index = -3; index <= 0; index++)
     {
         int i = 0;
-        array<Square *, 4> combinaison;
+        array<Case *, 4> combinaison;
         bool exist = true;
         for (int x = square.getX() + index; x <= square.getX() + index + 3; x++)
         {
-            if (grid.columnExist(x) && grid.getColumn(x).squareExist(square.getY()))
+            if (grid.colonneExist(x) && grid.getColonne(x).caseExist(square.getY()))
             {
-                combinaison[i++] = &grid.getColumn(x).getSquare(square.getY());
+                combinaison[i++] = &grid.getColonne(x).getCase(square.getY());
             }
             else
             {
@@ -84,13 +84,13 @@ vector<array<Square *, 4>> Game::getCombinaisons(Square square)
     for (int index = -3; index <= 0; index++)
     {
         int i = 0;
-        array<Square *, 4> combinaison;
+        array<Case *, 4> combinaison;
         bool exist = true;
         for (int y = square.getY() + index; y <= square.getY() + index + 3; y++)
         {
-            if (grid.columnExist(square.getX()) && grid.getColumn(square.getX()).squareExist(y))
+            if (grid.colonneExist(square.getX()) && grid.getColonne(square.getX()).caseExist(y))
             {
-                combinaison[i++] = &grid.getColumn(square.getX()).getSquare(y);
+                combinaison[i++] = &grid.getColonne(square.getX()).getCase(y);
             }
             else
             {
@@ -106,13 +106,13 @@ vector<array<Square *, 4>> Game::getCombinaisons(Square square)
     for (int index = -3; index <= 0; index++)
     {
         int i = 0;
-        array<Square *, 4> combinaison;
+        array<Case *, 4> combinaison;
         bool exist = true;
         for (int xy = index; xy <= index + 3; xy++)
         {
-            if (grid.columnExist(square.getX() - xy) && grid.getColumn(square.getX() - xy).squareExist(square.getY() - xy))
+            if (grid.colonneExist(square.getX() - xy) && grid.getColonne(square.getX() - xy).caseExist(square.getY() - xy))
             {
-                combinaison[i++] = &grid.getColumn(square.getX() - xy).getSquare(square.getY() - xy);
+                combinaison[i++] = &grid.getColonne(square.getX() - xy).getCase(square.getY() - xy);
             }
             else
             {
@@ -128,13 +128,13 @@ vector<array<Square *, 4>> Game::getCombinaisons(Square square)
     for (int index = -3; index <= 0; index++)
     {
         int i = 0;
-        array<Square *, 4> combinaison;
+        array<Case *, 4> combinaison;
         bool exist = true;
         for (int xy = index; xy <= index + 3; xy++)
         {
-            if (grid.columnExist(square.getX() - xy) && grid.getColumn(square.getX() - xy).squareExist(square.getY() + xy))
+            if (grid.colonneExist(square.getX() - xy) && grid.getColonne(square.getX() - xy).caseExist(square.getY() + xy))
             {
-                combinaison[i++] = &grid.getColumn(square.getX() - xy).getSquare(square.getY() + xy);
+                combinaison[i++] = &grid.getColonne(square.getX() - xy).getCase(square.getY() + xy);
             }
             else
             {
@@ -152,7 +152,7 @@ vector<array<Square *, 4>> Game::getCombinaisons(Square square)
 
 void Game::drawCombinaison()
 {
-    auto combinaison_list = getCombinaisons(grid.getColumn(4).getSquare(4));
+    auto combinaison_list = getCombinaisons(grid.getColonne(4).getCase(4));
     for (int c = 0; c <= combinaison_list.size() - 1; c++)
     {
         for (int s = 0; s <= combinaison_list[c].size() - 1; s++)
@@ -165,12 +165,12 @@ void Game::drawCombinaison()
     }
 }
 
-bool Game::checkWin(vector<array<Square *, 4>> combinaison_list)
+bool Game::checkWin(vector<array<Case *, 4>> combinaison_list)
 {
     for (int index = 0; index < combinaison_list.size(); index++)
     {
 
-        array<Square *, 4> combinaison = combinaison_list[index];
+        array<Case *, 4> combinaison = combinaison_list[index];
         if (combinaison[0]->getToken().has_value() &&
             combinaison[1]->getToken().has_value() &&
             combinaison[2]->getToken().has_value() &&
