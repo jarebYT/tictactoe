@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/nasonny/Projects/git/tictactoe/src",
-      "program": "/home/nasonny/Projects/git/tictactoe/src/build/Debug/outDebug",
+      "cwd": "C:/Users/h/tictactoe/src",
+      "program": "C://msys64/mingw64/bin/gcc.exe",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
