@@ -20,8 +20,13 @@ void Game::start()
         grid.display();
         cout << "Joueur : " << currentPlayer->getNom() << endl;
         cout << "Choisissez une colonne entre 1 et 3" << endl;
-        cin >> selectedCol;
-        selectedCol - 1;
+        while (!(cin >> selectedCol) || selectedCol < 1 || selectedCol > 3)
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Colonne invalide, choisissez une colonne entre 1 et 3" << endl;
+        }
+        selectedCol -= 1;
         Case square = play(selectedCol);
         vector<array<Case *, 4>> combinaison_list = getCombinaisons(square);
         if (checkWin(combinaison_list))
