@@ -2,17 +2,18 @@
 // Created by flopr on 04/12/2025.
 //
 
-#include "Case.h"
+#include "../include/Case.h"
 #include <iostream>
 
 using namespace std;
 
-Case::Case() : x(0), y (0), token() {}
+Case::Case() : x(0), y(0), token("") {}
 
-Case::Case(int xCoord, int yCoord) : x(xCoord), y (yCoord), token() {}
+Case::Case(int xCoord, int yCoord) : x(xCoord), y(yCoord), token("") {}
 
 int Case::getX() const { return x; }
 int Case::getY() const { return y; }
+
 string& Case::getToken() {
     return token;
 }
@@ -22,19 +23,19 @@ void Case::setToken(const string& value) {
 }
 
 void Case::clearToken() {
-    token.reset();
+    token = "";
 }
 
 void Case::display() {
     cout << "[";
-    if(token.has_value()){
-        cout << token.value_ref();
-    }else{
+    if (token.empty()) {
         cout << " ";
+    } else {
+        cout << token;
     }
     cout << "]";
 }
 
-bool Case::hasToken(){
-    return token.has_value();
+bool Case::hasToken() {
+    return !token.empty();
 }

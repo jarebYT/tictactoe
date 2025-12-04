@@ -1,4 +1,4 @@
-#include "Grille.h"
+#include "../include/Grille.h"
 #include <iostream>
 
 using namespace std;
