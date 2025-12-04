@@ -14,7 +14,7 @@ Case::Case(int xCoord, int yCoord) : x(xCoord), y(yCoord), token("") {}
 int Case::getX() const { return x; }
 int Case::getY() const { return y; }
 
-string& Case::getToken() {
+optional<string>& Case::getToken() {
     return token;
 }
 
@@ -28,14 +28,14 @@ void Case::clearToken() {
 
 void Case::display() {
     cout << "[";
-    if (token.empty()) {
-        cout << " ";
+    if (token.has_value()) {
+        cout << token.value();
     } else {
-        cout << token;
+        cout << " ";
     }
     cout << "]";
 }
 
 bool Case::hasToken() {
-    return !token.empty();
+    return !token.has_value();
 }
